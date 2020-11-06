@@ -1,0 +1,34 @@
+﻿@model IEnumerable<InformaticaPecas.Models.Tipo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <a href="Tipos/Create" class="btn btn-success" data-action="Create">
+        <span class="glyphicon glyphicon-plus"></span>
+        Novo Tipo
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

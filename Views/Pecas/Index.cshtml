@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Peças</h2>
+
+<p>
+    <a href="#" class="btn btn-success" data-action="Create">
+        <span class="glyphicon glyphicon-plus"></span>
+        Nova Peça
+    </a>
+</p>
+
+<table id="gridDados">
+    <thead>
+        <tr>
+            <th data-column-id="Produto" data-order="asc">Produto</th>
+            <th data-column-id="Valor">Valor</th>
+            <th data-formatter="acoes">Ações</th>
+        </tr>
+    </thead>
+</table>
+
+<div class="modal fade" id="minhaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="conteudoModal"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.bootgrid.js"></script>
+    <script src="~/Scripts/Projeto/ControlarGrid.js"></script>
+    <script type="text/javascript">
+
+        var controller = "Pecas";
+
+        var urlListar = "@Url.Action("Listar")";
+
+        $(document).ready(configurarControles);
+
+    </script>
+}

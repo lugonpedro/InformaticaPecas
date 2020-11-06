@@ -1,0 +1,48 @@
+﻿@{
+    var labels = ViewBag.Labels;
+    var labelsSerializado = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(labels));
+
+    var data = ViewBag.Data;
+    var dataSerializado = Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data));
+}
+
+<canvas id="grafico">
+</canvas>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <script>
+        var tipos = @labelsSerializado;
+        var pecas = @dataSerializado;
+
+        $(document)
+            .ready(function () {
+        var ctx = $('#grafico');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: tipos,
+                datasets: [{
+                    data: pecas,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 5
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    });
+    </script>
+}
